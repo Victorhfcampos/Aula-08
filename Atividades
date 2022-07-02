@@ -290,3 +290,47 @@ produto = Produto(nome, categoria, preco)
 
 desc = float(input('Qual valor você quer pagar pelo produto? '))
 produto.preco = desc
+
+Outra forma:
+class Produto:
+    def __init__(self, nome, categoria, preco):
+        self.__nome = nome
+        self.__categoria = categoria
+        self.__preco = preco
+
+    @property
+    def nome(self):
+        return self.__nome
+
+    @property
+    def categoria(self):
+        return self.__categoria
+
+    @property
+    def preco(self):
+        return self.__preco
+
+    @preco.setter
+    def preco(self, novoPreco):
+        if novoPreco < self.__preco * 0.85:
+            print('O desconto não foi aceito!')
+        else:
+            self.__preco = novoPreco
+            print('Desconto concedido!')
+
+    def mostrarCompra(self):
+        print('----------')
+        print(f'Produto: {self.__nome}')
+        print(f'Categoria: {self.__categoria}')
+        print(f'Preço: {self.__preco}')
+        print('----------')
+
+nome = input('Produto: ')
+categoria = input('Categoria: ')
+preco = float(input('Preço: '))
+
+produto = Produto(nome, categoria, preco)
+
+desc = float(input('Qual valor você quer pagar pelo produto? '))
+produto.preco = desc
+produto.mostrarCompra()
